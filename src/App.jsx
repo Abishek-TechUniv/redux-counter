@@ -1,33 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
 import { PropTypes } from 'prop-types';
-
-const reducer = (state = { counter: 0 }, action) => {
-  switch (action.type) {
-    case 'INCREMENT': {
-      return { ...state, counter: state.counter + 1 };
-    }
-    case 'DECREMENT': {
-      return { ...state, counter: state.counter - 1 };
-    }
-    default: {
-      return state;
-    }
-  }
-};
-
-const store = createStore(reducer);
+import store from './redux/store';
+import actions from './redux/actions';
 
 const App = props => (
   <div>
-    <button onClick={() => store.dispatch({ type: 'DECREMENT' })}>
+    <button onClick={() => store.dispatch(actions.decrement)}>
       Decrease
     </button>
     <h1>
       Hello {props.counter}
     </h1>
-    <button onClick={() => store.dispatch({ type: 'INCREMENT' })}>
+    <button onClick={() => store.dispatch(actions.increment)}>
       Increase
     </button>
   </div>
